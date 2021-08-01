@@ -12,7 +12,7 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         String stopStreet=scanner.nextLine();
         String readLine;
-        String dateFileName = new SimpleDateFormat("dd.MM.yyyy'.txt'").format(new Date());
+        String dateFileName = new SimpleDateFormat("dd.MM.yyyy").format(new Date());
 
         BufferedReader readerFile = new BufferedReader(new FileReader("task_2_addresses.txt"));
 
