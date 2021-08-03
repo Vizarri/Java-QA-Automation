@@ -5,14 +5,23 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Scanner;
 
+class filesNameMaker{
+    public PrintWriter createrNameNewFile (String newFilesName, String dateForFileName){
+        try {
+            return new PrintWriter( newFilesName+ dateForFileName + ".txt");
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+}
 
 public class task1 {
-
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         String stopStreet = scanner.nextLine();
         String readLine = null;
-        String dateFileName = new SimpleDateFormat("dd.MM.yyyy").format(new Date());
+        final String dateFileName = new SimpleDateFormat("dd.MM.yyyy").format(new Date());
         BufferedReader readerFile = null;
         try {
             readerFile = new BufferedReader(new FileReader("task_2_addresses.txt"));
@@ -21,11 +30,9 @@ public class task1 {
         }
 
         PrintWriter newFile = null;
-        try {
-            newFile = new PrintWriter("task_1_addresses_result_" + dateFileName + ".txt");
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
+        filesNameMaker newNameForFile=new filesNameMaker();
+
+        newFile= newNameForFile.createrNameNewFile("task_1_addresses_result_",dateFileName) ;
         while (true) {
             try {
                 if (!((readLine = readerFile.readLine()) != null)) break;
@@ -38,4 +45,5 @@ public class task1 {
         }
         newFile.close();
     }
+
 }
