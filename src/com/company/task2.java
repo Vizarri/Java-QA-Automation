@@ -25,15 +25,11 @@ class FileManager {
     }
 
     public void FileCreater() {
-        //говорю- читай этот xt
-
         try {
             readerFile = new BufferedReader(new FileReader(originalFileName));
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
-        // говорю- создавай новый txt с нужным мне именем и нужной шапкой
-
         try {
             newFile = new PrintWriter(newFileName + dateFileName + ".txt");
         } catch (FileNotFoundException e) {
@@ -55,7 +51,6 @@ class FileManager {
     }
 
     public void OriginalFileParser() {
-        //читаю исходник xtx до тех пор пока не появится строка , которая= null
         while (true) {
             try {
                 if (!((readLine = readerFile.readLine()) != null)) break;
