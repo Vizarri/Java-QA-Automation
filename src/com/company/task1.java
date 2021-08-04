@@ -1,11 +1,15 @@
 package com.company;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Scanner;
 
-class filesNameMaker{
+class FilesNameMaker{
     public PrintWriter createrNameNewFile (String newFilesName, String dateForFileName){
         try {
             return new PrintWriter( newFilesName+ dateForFileName + ".txt");
@@ -30,7 +34,7 @@ public class task1 {
         }
 
         PrintWriter newFile = null;
-        filesNameMaker newNameForFile=new filesNameMaker();
+        FilesNameMaker newNameForFile=new FilesNameMaker();
 
         newFile= newNameForFile.createrNameNewFile("task_1_addresses_result_",dateFileName) ;
         while (true) {

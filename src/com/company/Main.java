@@ -1,10 +1,5 @@
 package com.company;
 
-import java.io.*;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Scanner;
-
 
 public class Main {
 

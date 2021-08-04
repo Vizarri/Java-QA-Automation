@@ -2,7 +2,12 @@ package com.company;
 
 
 
-import java.io.*;
+
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -24,7 +29,7 @@ class FileManager {
         this.newFileName = newFileName;
     }
 
-    public void FileCreater() {
+    public void fileCreater() {
         try {
             readerFile = new BufferedReader(new FileReader(originalFileName));
         } catch (FileNotFoundException e) {
@@ -50,7 +55,7 @@ class FileManager {
         }
     }
 
-    public void OriginalFileParser() {
+    public void originalFileParser() {
         while (true) {
             try {
                 if (!((readLine = readerFile.readLine()) != null)) break;
@@ -73,7 +78,7 @@ class FileManager {
         }
     }
 
-    public void Sort() {
+    public void sort() {
         Collections.sort(twoDimArray, new Comparator<ArrayList<String>>() {
             @Override
             public int compare(ArrayList<String> one, ArrayList<String> two) {
@@ -92,7 +97,7 @@ class FileManager {
         });
     }
 
-    public void InputNewFile() {
+    public void inputNewFile() {
         for (int i = 0; i < twoDimArray.toArray().length; i++) {
             {
                 newFile.println(twoDimArray.get(i).get(0));
@@ -105,10 +110,10 @@ public class task2 {
 
     public static void main(String[] args) {
         FileManager newFile = new FileManager("task_2_addresses.txt", "task_2_addresses_result_");
-        newFile.FileCreater();
-        newFile.OriginalFileParser();
-        newFile.Sort();
-        newFile.InputNewFile();
+        newFile.fileCreater();
+        newFile.originalFileParser();
+        newFile.sort();
+        newFile.inputNewFile();
     }
 }
 
