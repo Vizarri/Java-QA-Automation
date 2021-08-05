@@ -1,0 +1,6 @@
+1.В конструкторе "ElevatorFloors(int minFloor, int maxFloor)" не учтен кейс с minFloor!>0. Минимальный этаж должен быть <=1 и !=0.
+2.В конструкторе "Elevator(int currentFloor, ElevatorFloors elevatorFloors, boolean doorsOpen)" имеется возможность инициализировать экзепляр класса ,
+где currentFloor=0 , хотя 0 этажа в принципе быть не может. Добавить исключение для параметра int currentFloor=0.
+3.В методе "moveElevatorToTheFloor(int destinationFloor)" допускается перемещение на нулевой этаж, данный кейс должен выбрасывать ошибку.
+4.На выходе из метода "GetAvailableFloors" в лист не попадает максимальный этаж. Нужно добавлять в лист на 1 элемент больше.
+5.В методе "moveElevatorToTheFloor(int destinationFloor)" лифт ездит только с открытми дверями , нужно инвертировать условие(if) для areTheDoorsOpen().
