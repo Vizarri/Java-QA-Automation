@@ -14,14 +14,15 @@ public class testElevatorGetAvailableFloors {
         ElevatorFloors elevatorFloors = new ElevatorFloors(1, 5);
         Elevator elevator = new Elevator(1, elevatorFloors, true);
         elevator.moveElevatorToTheFloor(5);
-        List<Integer> list=new ArrayList<>(5);
+        List<Integer> list = new ArrayList<>(5);
 
-        int num=0;
-        while (list.size()!=5)
-        {   num++;
-            list.add(num);}
+        int num = 0;
+        while (list.size() != 5) {
+            num++;
+            list.add(num);
+        }
 
-        List<Integer> expectedResult =list;
+        List<Integer> expectedResult = list;
         List<Integer> actualResult = elevator.getAvailableFloors();
         Assert.assertEquals("Кнопки для последнего этажа нет", expectedResult, actualResult);
     }
