@@ -1,1 +1,1 @@
-# AutomationTestingInternship
+# Selenium Basic
