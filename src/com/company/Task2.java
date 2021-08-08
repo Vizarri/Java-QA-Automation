@@ -1,6 +1,5 @@
+
 package com.company;
-
-
 
 
 import java.io.BufferedReader;
@@ -15,7 +14,6 @@ import java.util.Comparator;
 import java.util.Date;
 
 class FileManager {
-    String dateFileName = new SimpleDateFormat("dd.MM.yyyy").format(new Date());
     String originalFileName;
     String newFileName;
     String readLine;
@@ -24,49 +22,35 @@ class FileManager {
     BufferedReader readerFile = null;
     PrintWriter newFile = null;
 
+    public void arrayAdder(ArrayList<ArrayList<String>> array) {
+        array.add(new ArrayList<String>());
+        this.twoDimArray = array;
+    }
+
     public FileManager(String originalFileName, String newFileName) {
         this.originalFileName = originalFileName;
         this.newFileName = newFileName;
     }
 
-    public void fileCreater() {
-        try {
-            readerFile = new BufferedReader(new FileReader(originalFileName));
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-        try {
-            newFile = new PrintWriter(newFileName + dateFileName + ".txt");
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
+    public void fileCreater() throws IOException {
+        readerFile = new BufferedReader(new FileReader(originalFileName));
+        newFile = new PrintWriter(newFileName + Contains.dateFileName + ".txt");
         newFile.println("Адрес|Количество жителей|Тип дома");
         newFile.println("_________________________________");
         // заглушки для шапки таблицы
-        try {
-            String table_header = readerFile.readLine();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        try {
-            String table_header2 = readerFile.readLine();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        String tableHeader = readerFile.readLine();
+        String tableHeader2 = readerFile.readLine();
+
     }
 
-    public void originalFileParser() {
-        while (true) {
-            try {
-                if (!((readLine = readerFile.readLine()) != null)) break;
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+
+    public void originalFileParser() throws IOException {
+        while (((readLine = readerFile.readLine()) != null)) {
             //если строка содержит нужный мне символ-то:
             //1. Записываю в массиов[0][0] саму читаемую строку
             //2.Записываю в массив [0][1] количество жителей для читаемой строки
             if (readLine.contains("|")) {
-                twoDimArray.add(new ArrayList<String>());
+                arrayAdder(twoDimArray);
                 twoDimArray.get(firstArr).add(readLine);
                 String numPeople;
                 numPeople = readLine.substring(readLine.indexOf('|') + 1, readLine.lastIndexOf('|') + 1);
@@ -83,9 +67,8 @@ class FileManager {
             @Override
             public int compare(ArrayList<String> one, ArrayList<String> two) {
                 // Replacements for using Double.parseDouble(string) later
-                String value1 = one.get(1).replace(",", ".");
-                String value2 = two.get(1).replace(",", ".");
-
+                String value1 = one.get(1);
+                String value2 = two.get(1);
 
                 if (Double.parseDouble(value1) < Double.parseDouble(value2))
                     return -1;
@@ -106,17 +89,22 @@ class FileManager {
         newFile.close();
     }
 }
-public class task2 {
+
+public class Task2 {
 
     public static void main(String[] args) {
         FileManager newFile = new FileManager("task_2_addresses.txt", "task_2_addresses_result_");
-        newFile.fileCreater();
-        newFile.originalFileParser();
+        try {
+            newFile.fileCreater();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        try {
+            newFile.originalFileParser();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         newFile.sort();
         newFile.inputNewFile();
     }
 }
-
-
-
-
