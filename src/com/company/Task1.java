@@ -9,7 +9,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Scanner;
 
-class FilesNameMaker {
+class FilesManager {
     public PrintWriter createrNameNewFile(String newFilesName, String dateForFileName) {
         try {
             return new PrintWriter(String.format("%s %s .txt", newFilesName, dateForFileName));
@@ -20,18 +20,10 @@ class FilesNameMaker {
     }
 }
 
-class NewFileFormater {
-    Scanner scanner = new Scanner(System.in);
-    String stopStreet = scanner.nextLine();
-    String readLine = null;
-    BufferedReader readerFile = null;
-    PrintWriter newFile = null;
-}
-
 public class Task1 {
     public static void main(String[] args) {
         NewFileFormater newFileFormater = new NewFileFormater();
-        FilesNameMaker newNameForFile = new FilesNameMaker();
+        FilesManager newNameForFile = new FilesManager();
         try {
             newFileFormater.readerFile = new BufferedReader(new FileReader("task_2_addresses.txt"));
         } catch (FileNotFoundException e) {
@@ -39,10 +31,10 @@ public class Task1 {
         }
 
 
-        newFileFormater.newFile = newNameForFile.createrNameNewFile("task_1_addresses_result_", Contains.dateFileName);
+        newFileFormater.newFile = newNameForFile.createrNameNewFile("task_1_addresses_result_", DateTimeFormats.dateFileName);
         while (true) {
             try {
-                if (!((newFileFormater.readLine = newFileFormater.readerFile.readLine()) != null)) break;
+                if ((newFileFormater.readLine = newFileFormater.readerFile.readLine()) == null) break;
             } catch (IOException e) {
                 e.printStackTrace();
             }

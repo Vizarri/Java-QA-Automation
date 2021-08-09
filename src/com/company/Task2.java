@@ -12,17 +12,18 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
+import java.util.List;
 
 class FileManager {
     String originalFileName;
     String newFileName;
     String readLine;
     int firstArr = 0;
-    ArrayList<ArrayList<String>> twoDimArray = new ArrayList<ArrayList<String>>();
+    List<List<String>> twoDimArray = new ArrayList<>();
     BufferedReader readerFile = null;
     PrintWriter newFile = null;
 
-    public void arrayAdder(ArrayList<ArrayList<String>> array) {
+    public void arrayAdder(List<List<String>> array) {
         array.add(new ArrayList<String>());
         this.twoDimArray = array;
     }
@@ -32,11 +33,11 @@ class FileManager {
         this.newFileName = newFileName;
     }
 
-    public void fileCreater() throws IOException {
+    public void fileCreater(String stringCaps, String stringCaps2) throws IOException {
         readerFile = new BufferedReader(new FileReader(originalFileName));
-        newFile = new PrintWriter(newFileName + Contains.dateFileName + ".txt");
-        newFile.println("Адрес|Количество жителей|Тип дома");
-        newFile.println("_________________________________");
+        newFile = new PrintWriter(newFileName + DateTimeFormats.dateFileName + ".txt");
+        newFile.println(stringCaps);
+        newFile.println(stringCaps2);
         // заглушки для шапки таблицы
         String tableHeader = readerFile.readLine();
         String tableHeader2 = readerFile.readLine();
@@ -63,12 +64,12 @@ class FileManager {
     }
 
     public void sort() {
-        Collections.sort(twoDimArray, new Comparator<ArrayList<String>>() {
+        Collections.sort(twoDimArray, new Comparator<List<String>>() {
             @Override
-            public int compare(ArrayList<String> one, ArrayList<String> two) {
+            public int compare(List<String> firstArray, List<String> secondArray) {
                 // Replacements for using Double.parseDouble(string) later
-                String value1 = one.get(1);
-                String value2 = two.get(1);
+                String value1 = firstArray.get(1);
+                String value2 = secondArray.get(1);
 
                 if (Double.parseDouble(value1) < Double.parseDouble(value2))
                     return -1;
@@ -95,7 +96,7 @@ public class Task2 {
     public static void main(String[] args) {
         FileManager newFile = new FileManager("task_2_addresses.txt", "task_2_addresses_result_");
         try {
-            newFile.fileCreater();
+            newFile.fileCreater("Адрес|Количество жителей|Тип дома", "_________________________________");
         } catch (IOException e) {
             e.printStackTrace();
         }
