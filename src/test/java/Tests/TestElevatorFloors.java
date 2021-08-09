@@ -1,8 +1,8 @@
 package Tests;
 
 import elevator.ElevatorFloors;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 public class TestElevatorFloors {
 
@@ -11,7 +11,7 @@ public class TestElevatorFloors {
         ElevatorFloors elevatorFloors = new ElevatorFloors(5, 10);
         int expectedResult = 5;
         int actualResult = elevatorFloors.getMinFloor();
-        Assert.assertEquals("Минимальный этаж не может быть больше 1", expectedResult, actualResult);
+        Assertions.assertEquals(expectedResult, actualResult,"Минимальный этаж не может быть больше 1");
 
     }
 }

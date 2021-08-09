@@ -4,8 +4,8 @@ import elevator.ElevatorFloors;
 import elevator.exceptions.DoorsAreOpenException;
 import elevator.exceptions.FloorOutOfBoundException;
 import models.Elevator.Elevator;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
@@ -19,9 +19,9 @@ public class TestElevator {
         Elevator elevator = new Elevator(1, elevatorFloors, true);
         try {
             elevator.moveElevatorToTheFloor(3);
-            Assert.assertTrue(false);
+            Assertions.assertTrue(false);
         } catch (DoorsAreOpenException ex) {
-            Assert.assertTrue(true);
+            Assertions.assertTrue(true);
         }
     }
 
@@ -39,7 +39,7 @@ public class TestElevator {
         }
 
         List<Integer> actualResult = elevator.getAvailableFloors();
-        Assert.assertEquals("метод getAvailableFloors() выдает лист на один элемент меньше чем нужно", list, actualResult);
+        Assertions.assertEquals( list, actualResult,"метод getAvailableFloors() выдает лист на один элемент меньше чем нужно");
     }
 
     @Test
@@ -50,9 +50,9 @@ public class TestElevator {
         int expectedResult = 0;
         try {
             elevator.moveElevatorToTheFloor(expectedResult);
-            Assert.assertTrue(false);
+            Assertions.assertTrue(false);
         } catch (FloorOutOfBoundException ex) {
-            Assert.assertTrue(true);
+            Assertions.assertTrue(true);
         }
     }
 
@@ -63,6 +63,6 @@ public class TestElevator {
         Elevator elevator = new Elevator(0, elevatorFloors, false);
         int expectedResult = floor;
         int actualResult = elevator.getCurrentFloor();
-        Assert.assertEquals("0 этажа не может быть", expectedResult, actualResult);
+        Assertions.assertEquals(expectedResult, actualResult,"0 этажа не может быть");
     }
 }
