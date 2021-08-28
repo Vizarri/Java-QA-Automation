@@ -26,7 +26,7 @@ public class ActionsCompare {
         steamCategoryPage.CheckPriceFirstGame();
         priceInPreviev = SteamCategoryPage.gamePriceInPrevievText;
         steamActionGamePage.checkPriceOfTheGameInPage();
-        priceInGamePage = steamActionGamePage.actualGamePrice;
+        priceInGamePage = steamActionGamePage.actualGamePriceValue;
 
     }
 }
